@@ -1,0 +1,498 @@
+//FONTS
+@import url(//db.onlinewebfonts.com/c/2596224269750e00c3ad5356299a3b9f?family=Ogg);
+@import url(//db.onlinewebfonts.com/c/229a57bbeef591e04a1fdfe347c90864?family=Centra+No2);
+@font-face {font-family: "Ogg"; src: url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.eot"); 
+    src: url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.eot?#iefix") format("embedded-opentype"),
+     url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.woff2") format("woff2"), 
+     url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.woff") format("woff"),
+      url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.ttf") format("truetype"), 
+      url("//db.onlinewebfonts.com/t/2596224269750e00c3ad5356299a3b9f.svg#Ogg") format("svg"); 
+    }
+    @font-face {font-family: "Centra"; 
+      src: url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.eot"); 
+      src: url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.eot?#iefix") format("embedded-opentype"), 
+      url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.woff2") format("woff2"),
+      url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.woff") format("woff"), 
+      url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.ttf") format("truetype"),
+      url("//db.onlinewebfonts.com/t/229a57bbeef591e04a1fdfe347c90864.svg#Centra No2") format("svg"); 
+    }
+
+    @font-face {
+        font-family: Ogg-Roman;
+        src: url("../resources/fonts/Ogg-Roman.otf") format("opentype");
+    }
+    
+    @font-face {
+        font-family: Ogg-Italic;
+        src: url("../resources/fonts/Ogg-Italic.otf") format("opentype");
+    }
+//VARIABLES
+$color-background: #2D2A2A;
+$hg-tablet-end: 480px;
+$hg-mobile-end: 768px;
+
+//MIXINS
+
+@mixin main-mobile {
+  @media screen and (max-width: $hg-mobile-end) {
+    @content;
+  }
+}
+
+@mixin main-only-mobile {
+  @media screen and (max-width: $hg-tablet-end) {
+    @content;
+  }
+}
+@mixin gradient-text() {
+  background: -webkit-linear-gradient(#e99e3d, #fad1a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+
+  @mixin flex-box($wrap: nowrap,$align: stretch,$justify-content: flex-start) {
+    display: flex;
+    flex-wrap: $wrap;
+    align-items: $align;
+    justify-content: $justify-content;
+  }
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Ogg;
+    background-color: $color-background;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.col3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    /* CSS Smooth Scroll */
+    overflow-y: auto; 
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+
+    section {
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        scroll-snap-align: center;
+        max-width: 100vw;;
+    }
+
+    .values {
+        display: grid;
+        grid-template-rows: 0.5fr 2.5fr;
+
+        &__header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            @include main-mobile() {
+              grid-template-columns: 1fr;
+            }
+
+            &-pic {
+              height: 250px;
+              width: 100%;
+              position: relative;
+              overflow: hidden;
+
+              @include main-mobile() {
+                display: none;
+              }
+
+              img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 20px;
+              }
+             
+            }
+
+            &-text {
+                font-size: 10rem;
+                @include flex-box(wrap,center,center);
+                //@include gradient-text('linear-gradient(to bottom, #530404 22%,#3c0707 24%, #512404 26%, #660303 27%,#cd8630 40%,#cd900a 78%)', 'dark');
+                @include gradient-text();
+              }
+        }
+
+        &__content {
+          padding: 0 4rem;
+          display: grid;
+          grid-template-rows: 0.5fr 1fr;
+
+            &-bar {
+              height: 0.5rem;
+              width: 10rem;
+              background: linear-gradient(to bottom, #530404 22%,#3c0707 24%, #512404 26%, #660303 27%,#cd8630 40%,#cd900a 78%);
+              background-color: blue;
+            }
+
+            &-title {
+              font-size: 2rem;
+              @include gradient-text();
+            }
+
+            &-desc {
+              color: white;
+              font-size: 1rem;
+              font-family: Centra;
+              text-align: justify;
+            }
+
+            &-main {
+              font-size: 2rem;
+              p {
+                @include gradient-text();
+              font-size: 3rem;
+            }
+
+            @include main-mobile() {
+              display: none;
+            }
+            }
+            // display: grid;
+            // grid-template-rows: 1fr 1fr;
+
+            &-pic {
+                @include flex-box(wrap,center,center);
+                padding: 1rem;
+                // &.vision {
+                //   img {
+                //   object-fit: contain;
+                //   }
+                // }
+                img {
+                  height: 250px;
+                  width: 100%;
+                }
+                
+                &-border {
+                  height: 1rem;
+                  @include gradient-text();
+                }
+                &.center {
+                  @include main-mobile() {
+                    display: none;
+                  }
+                }
+            }
+
+            hr {
+              @include gradient-text();
+            }
+
+            &-description {
+
+              &-text {
+                flex-direction: column;
+               @include flex-box(wrap, center);
+                
+                &.title {
+                  justify-content: stretch;
+                  @include main-mobile() {
+                    display: none;
+                  }
+                }
+              }  
+            }
+        }
+    }
+    .capabilities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+
+      @include main-mobile() {
+        grid-template-rows: 1fr 3fr;
+      }
+
+      &-circle {
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        background-color: #efbd86;
+        opacity: 0.7;
+        margin: auto;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        color: black;
+        font-size: 3rem;
+        @include flex-box(wrap,center,center);
+        text-align: center;
+
+        &.two {
+          height: 320px;
+          width: 320px;
+          border-radius: 50%;
+          border: 2px solid #efbd86;
+          background-color: transparent;
+        }
+      }
+
+      &-image {
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.5;
+          backface-visibility: hidden;
+          max-height: 100vh;
+        }
+      }
+      &-content {
+        background-color: #fad1a5;
+        padding: 0 11rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+        color: #75706a;
+        height: 100%;
+        max-height: 100vh;
+
+        &-number {
+          font-family: Centra;
+        }
+
+        &-arrows {
+          display: flex;
+          justify-content: space-between;
+          height: 50px;
+          width: 100%;
+
+          .arrow {
+            height: 100%;
+            @include flex-box(wrap,center, space-around);
+            width: 50%;
+            font-weight: bold;
+
+            &:first-child {
+              margin-right: 5px;
+            }
+
+            img {
+              height: 40%;
+            }
+          }
+        }
+
+        &-wheel{
+          height: 20px;
+          width: 100px;
+          margin-left: -5px;
+
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+        p {
+          font-family: Centra;
+        }
+      }
+    }
+
+    .news {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      &-left {
+        position: relative;
+        padding: 0 3rem;
+
+        h1 {
+          @include gradient-text();
+          font-size: 10rem;
+          position: absolute;
+          top: 1%;
+          left: 2%;
+        }
+
+        &-image {
+          z-index: 10;
+          position: absolute;
+          bottom: 5%;
+          right: 5%;
+          width: 80%;
+          height: 75%;
+          background-color: $color-background;
+          border: 2px solid  #fad1a5;
+
+          .image-container {
+              width: 95%;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              height: 95%;
+
+              &-date {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                position: absolute;
+                top: 5%;
+                left: 5%;
+                background-color: #75706a;
+                text-align: center;
+                @include flex-box(wrap,center,center);
+                font-family: Centra;
+              }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              opacity: 0.3;
+            }
+            p {
+              
+            }
+
+          }
+        }
+
+      }
+      &-right {
+        position: relative;
+        padding: 0 3rem;
+
+        &-buttons {
+          display: flex;
+          height: 50px;
+          position: absolute;
+          bottom: 7%;
+
+          &.blog-buttons {
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+          }
+
+          img {
+            height: 100%;
+            margin-right: 10px;
+          }
+        }
+
+        &-image {
+          position: absolute;
+          top: 5%;
+          left: 5%;
+          width: 80%;
+          height: 75%;
+          background-color: transparent;
+          border: 2px solid  #fad1a5;
+          .image-container {
+            width: 95%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 95%;
+
+            &-date {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              position: absolute;
+              top: 5%;
+              left: 5%;
+              background-color: #75706a;
+              text-align: center;
+              @include flex-box(wrap,center,center);
+              font-family: Centra;
+            }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+}
+    .blog {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+
+      h1 {
+        font-size: 10rem;
+        @include gradient-text();
+        position: absolute;
+        right: 3%;
+        top: 4%;
+      }
+      &-container {
+        background-color: $color-background;
+        border: 2px solid #fad1a5;
+        width: 80%;
+        height: 70%;
+        margin-bottom: 3%;
+        position: relative;
+        &-image {
+          position: absolute;
+          width: 95%;
+          height: 95%;
+          bottom: 0;
+          left: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+
+
+
+.news-desc {
+  @include gradient-text();
+  font-size:1.5rem;
+  font-family: Centra;
+  text-align: left;
+  position: absolute;
+  left: 5px;
+  bottom: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  @include flex-box(wrap,center,center);
+  flex-direction: column;
+}
+
+.read-more {
+  display: flex;
+  height: 20px;
+  width: 100%;
+  @include gradient-text();
+  p {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+}
